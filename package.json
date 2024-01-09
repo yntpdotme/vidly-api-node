@@ -1,0 +1,22 @@
+{
+  "name": "vidly-api-node",
+  "version": "1.0.0",
+  "description": "Vidly is a fictional movie rental platform designed to manage your customer base effortlessly.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest --verbose"
+  },
+  "author": "Akash Kadlag",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3"
+  }
+}
