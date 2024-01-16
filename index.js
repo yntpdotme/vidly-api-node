@@ -1,5 +1,6 @@
 import express from "express";
 
+import logger from "./logs/logger.js";
 import routes from "./startup/routes.js";
 import db from "./startup/db.js";
 
@@ -9,4 +10,4 @@ routes(app);
 db();
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Listening on Port ${port}...`));
+app.listen(port, () => logger.info(`Listening on Port ${port}...`));
