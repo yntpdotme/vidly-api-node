@@ -3,7 +3,7 @@ import "winston-mongodb";
 import "dotenv/config";
 
 const { createLogger, transports, format } = winston;
-const { combine, cli, timestamp, json } = format;
+const { combine, cli, timestamp, json, metadata } = format;
 
 const developmentLogger = () => {
 	return createLogger({
@@ -13,10 +13,22 @@ const developmentLogger = () => {
 				format: cli(),
 			}),
 			new transports.MongoDB({
-				format: combine(timestamp(), json()),
+				format: combine(timestamp(), json(), metadata()),
 				options: { useUnifiedTopology: true },
 				db: process.env.DB_URL,
-				collection: "dev_logs",
+				collection: "logs_dev",
+			}),
+		],
+		exceptionHandlers: [
+			new transports.File({
+				filename: "logs/logfiles/uncaughtException.log",
+				format: json(),
+			}),
+		],
+		rejectionHandlers: [
+			new transports.File({
+				filename: "logs/logfiles/unhandledRejection.log",
+				format: json(),
 			}),
 		],
 	});
