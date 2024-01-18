@@ -6,7 +6,7 @@ const db = () => {
 	mongoose
 		.connect(process.env.DB_URL)
 		.then(() => logger.info(`Connected to MongoDB...`))
-		.catch((ex) => console.error(ex));
+		.catch((ex) => logger.error(ex));
 };
 
 export default db;

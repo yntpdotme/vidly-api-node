@@ -1,4 +1,5 @@
 import winston from "winston";
+import "dotenv/config";
 
 const { createLogger, transports, format } = winston;
 const { combine, timestamp, json, metadata } = format;
