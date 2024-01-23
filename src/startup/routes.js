@@ -1,6 +1,6 @@
 import express from "express";
 
-import genresRoutes from "../routes/genres.js";
+import genresRoutes from "../routes/genreRoutes.js";
 import error from "../middleware/error.js";
 
 const routes = (app) => {

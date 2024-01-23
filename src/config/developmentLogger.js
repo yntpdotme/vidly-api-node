@@ -21,13 +21,13 @@ const developmentLogger = () => {
 		],
 		exceptionHandlers: [
 			new transports.File({
-				filename: "logs/logfiles/uncaughtException.log",
+				filename: "logs/uncaughtException.log",
 				format: json(),
 			}),
 		],
 		rejectionHandlers: [
 			new transports.File({
-				filename: "logs/logfiles/unhandledRejection.log",
+				filename: "logs/unhandledRejection.log",
 				format: json(),
 			}),
 		],
