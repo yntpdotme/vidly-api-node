@@ -9,8 +9,8 @@ const productionLogger = () => {
 		level: "info",
 		format: combine(timestamp(), json(), metadata()),
 		transports: [
-			new transports.File({ filename: "./logs/logfiles/app-error.log", level: "error" }),
-			new transports.File({ filename: "./logs/logfiles/combined.log" }),
+			new transports.File({ filename: "logs/app-error.log", level: "error" }),
+			new transports.File({ filename: "logs/combined.log" }),
 			new transports.MongoDB({
 				level: "error",
 				options: { useUnifiedTopology: true },

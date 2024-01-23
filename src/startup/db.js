@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
 import "dotenv/config";
-import logger from "../logs/logger.js";
+import logger from "../config/logger.js";
 
 // Load environment variables based on NODE_ENV
 const environment = process.env.NODE_ENV || "development";
-const url = (environment === "test") ? process.env.TEST_DB_URL : process.env.DB_URL;
+const url =
+	environment === "test" ? process.env.TEST_DB_URL : process.env.DB_URL;
 
 const db = () => {
 	mongoose
