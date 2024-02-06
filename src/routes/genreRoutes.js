@@ -1,13 +1,12 @@
-// routes/genreRoutes.js
-import express from "express";
+import express from 'express';
 import {
-	getAllGenres,
-	getGenreById,
-	createGenre,
-	updateGenreById,
-	deleteGenreById,
-} from "../controllers/genreController.js";
-import validateObjectId from "../middleware/validateObjectId.js";
+  getAllGenres,
+  getGenreById,
+  createGenre,
+  updateGenreById,
+  deleteGenreById,
+} from '../controllers/genreController.js';
+import validateObjectId from '../middleware/validateObjectId.js';
 
 const router = express.Router();
 
@@ -15,12 +14,12 @@ const router = express.Router();
 // TODO: Add authorization for DELETE
 
 router
-  .route("/")
+  .route('/')
   .get(getAllGenres)
   .post(createGenre);
 
 router
-  .route("/:id")
+  .route('/:id')
   .get(validateObjectId, getGenreById)
   .put(validateObjectId, updateGenreById)
   .delete(validateObjectId, deleteGenreById);
