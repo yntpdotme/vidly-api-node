@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "npx nodemon src/server.js",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "lint": "eslint ./src --ext .js"
   },
   "author": "Akash Kadlag",
   "license": "ISC",
@@ -21,8 +22,12 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.23.8",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jest": "^27.6.3",
     "jest": "^29.7.0",
     "nodemon": "^3.0.3",
+    "prettier": "^3.2.5",
     "supertest": "^6.3.3"
   }
 }
