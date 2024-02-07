@@ -2,6 +2,7 @@ import {Genre, validate} from '../models/Genre.js';
 
 const getAllGenres = async (req, res) => {
   const genres = await Genre.find({}, {__v: 0}).sort({name: 1});
+
   res.json(genres);
 };
 
@@ -9,6 +10,7 @@ const getGenreById = async (req, res) => {
   const genre = await Genre.findById(req.params.id);
   if (!genre)
     return res.status(404).send('The genre with the given ID was not found');
+
   res.json(genre);
 };
 
