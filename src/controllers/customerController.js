@@ -9,7 +9,7 @@ const getAllCustomers = async (req, res) => {
 };
 
 const getCustomerById = async (req, res) => {
-  const customer = await Customer.findById(req.params.id);
+  const customer = await Customer.findById(req.params.id).select('-__v');
   if (!customer)
     return res.status(404).send('The customer with the given ID was not found');
 
@@ -42,7 +42,7 @@ const updateCustomerById = async (req, res) => {
       phone: req.body.phone,
     },
     {new: true},
-  );
+  ).select('-__v');
 
   if (!customer)
     return res.status(404).send('The customer with the given ID was not found');
@@ -51,7 +51,9 @@ const updateCustomerById = async (req, res) => {
 };
 
 const deleteCustomerById = async (req, res) => {
-  const customer = await Customer.findByIdAndDelete(req.params.id);
+  const customer = await Customer.findByIdAndDelete(req.params.id).select(
+    '-__v',
+  );
 
   if (!customer)
     return res.status(404).send('The customer with the given ID was not found');

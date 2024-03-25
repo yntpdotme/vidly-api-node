@@ -2,12 +2,12 @@ import {Genre} from '../models/Genre.js';
 import {Movie, validate} from '../models/Movie.js';
 
 const getAllMovies = async (req, res) => {
-  const movies = await Movie.find({}, {__v: 0}).sort({title: 1});
+  const movies = await Movie.find({}, { __v: 0 }).sort({ title: 1 });
   res.json(movies);
 };
 
 const getMovieById = async (req, res) => {
-  const movie = await Movie.findById(req.params.id);
+  const movie = await Movie.findById(req.params.id).select('-__v');
   if (!movie)
     return res.status(404).send('The movie with the given ID was not found');
   res.json(movie);
@@ -53,7 +53,7 @@ const updateMovieById = async (req, res) => {
       dailyRentalRate: req.body.dailyRentalRate,
     },
     {new: true},
-  );
+  ).select('-__v');
   if (!movie)
     return res.status(404).send('The movie with the given ID was not found');
 
@@ -61,7 +61,7 @@ const updateMovieById = async (req, res) => {
 };
 
 const deleteMovieById = async (req, res) => {
-  const movie = await Movie.findByIdAndDelete(req.params.id);
+  const movie = await Movie.findByIdAndDelete(req.params.id).select('-__v');
   if (!movie)
     return res.status(404).send('The movie with the given ID was not found');
 

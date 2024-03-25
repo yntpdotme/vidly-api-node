@@ -7,7 +7,7 @@ const getAllGenres = async (req, res) => {
 };
 
 const getGenreById = async (req, res) => {
-  const genre = await Genre.findById(req.params.id);
+  const genre = await Genre.findById(req.params.id).select('-__v');
   if (!genre)
     return res.status(404).send('The genre with the given ID was not found');
 
@@ -34,7 +34,7 @@ const updateGenreById = async (req, res) => {
     req.params.id,
     {name: req.body.name},
     {new: true},
-  );
+  ).select('-__v');
   if (!genre)
     return res.status(404).send('The genre with the given ID was not found');
 
@@ -42,7 +42,7 @@ const updateGenreById = async (req, res) => {
 };
 
 const deleteGenreById = async (req, res) => {
-  const genre = await Genre.findByIdAndDelete(req.params.id);
+  const genre = await Genre.findByIdAndDelete(req.params.id).select('-__v');
   if (!genre)
     return res.status(404).send('The genre with the given ID was not found');
 
