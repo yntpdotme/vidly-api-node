@@ -55,4 +55,4 @@ const validateCustomer = customer => {
   return schema.safeParse(customer);
 };
 
-export {Customer, validateCustomer as validate};
+export {Customer, customerSchema, validateCustomer as validate};
