@@ -10,11 +10,16 @@ Here's an overview:
 
 - `/api/rentals:` Manage movie rentals.
 
-- `/api/employees:` Handle employee-related operations..
+- `/api/employees/signup:` Register a new employee with required information
+
+- `/api/employees/signin:` Authenticate and sign in with credentials.
+
+- `/api/employees/signout:`: Logs out the authenticated employee session.
+
+- `/api/employees/refresh:`: Refreshes the access token.
 
 - `/api/returns:` Manage movie returns.
 
-- `/api/signin:` Authentication route.
   <br><br>
 
 <h3 align="center">
