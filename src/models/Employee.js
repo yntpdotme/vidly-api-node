@@ -108,4 +108,23 @@ const employeeRegisterValidator = employee => {
   return schema.safeParse(employee);
 };
 
-export {Employee, employeeRegisterValidator as ValidateRegister};
+const employeeLoginValidator = employee => {
+  const schema = zod
+    .object({
+      email: zod
+        .string({required_error: 'Email is required'})
+        .email('Please enter a valid email address'),
+      password: zod
+        .string({required_error: 'Password is required'})
+        .min(1, 'Password is required'),
+    })
+    .strict();
+
+  return schema.safeParse(employee);
+};
+
+export {
+  Employee,
+  employeeRegisterValidator as ValidateRegister,
+  employeeLoginValidator as ValidateLogin,
+};

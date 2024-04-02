@@ -54,4 +54,32 @@ const registerEmployee = async (req, res) => {
     .json({employee: {_id, name, email}, accessToken, refreshToken});
 };
 
-export {registerEmployee};
+const loginEmployee = async (req, res) => {
+  const {error} = ValidateLogin(req.body);
+  if (error) return res.status(400).send(error.issues[0].message);
+
+  const employee = await Employee.findOne({email: req.body.email});
+  if (!employee) return res.status(401).send('Email and password do not match');
+
+  const isPasswordValid = await employee.isPasswordCorrect(req.body.password);
+  if (!isPasswordValid)
+    return res.status(401).send('Email and password do not match');
+
+  const {accessToken, refreshToken} = await generateAccessAndRefreshTokens(
+    employee._id,
+  );
+
+  const options = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+  };
+
+  const {_id, name, email} = employee;
+
+  return res
+    .cookie('accessToken', accessToken, options)
+    .cookie('refreshToken', refreshToken, options)
+    .json({employee: {_id, name, email}, accessToken, refreshToken});
+};
+
+export {registerEmployee, loginEmployee};
