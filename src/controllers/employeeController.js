@@ -82,4 +82,27 @@ const loginEmployee = async (req, res) => {
     .json({employee: {_id, name, email}, accessToken, refreshToken});
 };
 
-export {registerEmployee, loginEmployee};
+const logoutEmployee = async (req, res) => {
+  await Employee.findByIdAndUpdate(
+    req.employee._id,
+    {
+      $set: {
+        refreshToken: undefined,
+      },
+    },
+    {new: true},
+  );
+
+  const options = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+  };
+
+  return res
+    .status(200)
+    .clearCookie('accessToken', options)
+    .clearCookie('refreshToken', options)
+    .json('Employee loggd out');
+};
+
+export {registerEmployee, loginEmployee, logoutEmployee};
