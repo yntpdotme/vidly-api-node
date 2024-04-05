@@ -105,4 +105,42 @@ const logoutEmployee = async (req, res) => {
     .json('Employee loggd out');
 };
 
-export {registerEmployee, loginEmployee, logoutEmployee};
+const refreshAccessToken = async (req, res) => {
+  const incomingRefreshToken =
+    req.cookies?.refreshToken || req.body?.refreshToken;
+
+  if (!incomingRefreshToken)
+    return res.status(401).json('Unauthorized request');
+
+  const decodedToken = jwt.verify(
+    incomingRefreshToken,
+    process.env.REFRESH_TOKEN_SECRET,
+  );
+
+  const employee = await Employee.findById(decodedToken?._id);
+  if (!employee) return res.status(401).json('Invalid refresh token');
+
+  if (incomingRefreshToken !== employee?.refreshToken) {
+    // If token is valid but is used already
+    return res.status(401).json('Refresh token is expired or used');
+  }
+
+  const {accessToken, refreshToken: newRefreshToken} =
+    await generateAccessAndRefreshTokens(employee._id);
+
+  const options = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+  };
+
+  return res
+    .status(200)
+    .cookie('accessToken', accessToken, options)
+    .cookie('refreshToken', newRefreshToken, options)
+    .json(
+      {accessToken, refreshToken: newRefreshToken},
+      'Access token refreshed',
+    );
+};
+
+export {registerEmployee, loginEmployee, logoutEmployee, refreshAccessToken};
