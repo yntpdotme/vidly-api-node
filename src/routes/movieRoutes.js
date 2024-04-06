@@ -7,21 +7,21 @@ import {
   deleteMovieById,
 } from '../controllers/movieController.js';
 import validateObjectId from '../middleware/validateObjectId.js';
+import authentication from '../middleware/authentication.js';
 
 const router = epress.Router();
 
-// TODO: Add authentication for POST, PUT, DELETE
 // TODO: Add authorization for DELETE
 
 router
   .route('/')
   .get(getAllMovies)
-  .post(createMovie);
+  .post(authentication, createMovie);
 
 router
   .route('/:id')
   .get(validateObjectId, getMovieById)
-  .put(validateObjectId, updateMovieById)
-  .delete(validateObjectId, deleteMovieById);
+  .put(authentication, validateObjectId, updateMovieById)
+  .delete(authentication, validateObjectId, deleteMovieById);
 
 export default router;

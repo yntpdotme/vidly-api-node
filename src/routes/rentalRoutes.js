@@ -6,11 +6,16 @@ import {
   getRentalById,
 } from '../controllers/rentalController.js';
 import validateObjectId from '../middleware/validateObjectId.js';
+import authentication from '../middleware/authentication.js';
 
 const router = express.Router();
 
-router.route('/').get(getAllRentals).post(createRental);
+router
+  .route('/')
+  .get(authentication, getAllRentals).post(createRental);
 
-router.route('/:id').get(validateObjectId, getRentalById);
+router
+  .route('/:id')
+  .get(authentication, validateObjectId, getRentalById);
 
 export default router;

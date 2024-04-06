@@ -7,21 +7,21 @@ import {
   deleteGenreById,
 } from '../controllers/genreController.js';
 import validateObjectId from '../middleware/validateObjectId.js';
+import authentication from '../middleware/authentication.js';
 
 const router = express.Router();
 
-// TODO: Add authentication for POST, PUT, DELETE
 // TODO: Add authorization for DELETE
 
 router
   .route('/')
   .get(getAllGenres)
-  .post(createGenre);
+  .post(authentication, createGenre);
 
 router
   .route('/:id')
   .get(validateObjectId, getGenreById)
-  .put(validateObjectId, updateGenreById)
-  .delete(validateObjectId, deleteGenreById);
+  .put(authentication, validateObjectId, updateGenreById)
+  .delete(authentication, validateObjectId, deleteGenreById);
 
 export default router;
