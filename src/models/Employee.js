@@ -27,6 +27,11 @@ const employeeSchema = new mongoose.Schema({
     minlength: 6,
     maxlength: 1024,
   },
+  role: {
+    type: String,
+    enum: ['Employee', 'Admin'],
+    default: 'Employee',
+  },
   refreshToken: {
     type: String,
   },
@@ -102,6 +107,14 @@ const employeeRegisterValidator = employee => {
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/;
           return passwordRegex.test(password);
         }, 'Password must have at least 6 characters, one uppercase letter, one lowercase letter, one digit, and one special character.'),
+
+      role: zod
+        .enum(['Employee', 'Admin'], {
+          errorMap: () => ({
+            message: 'Role must be either "Employee" or "Admin".',
+          }),
+        })
+        .optional(),
     })
     .strict();
 

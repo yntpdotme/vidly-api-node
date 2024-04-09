@@ -34,6 +34,7 @@ const registerEmployee = async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
+    role: req.body.role,
   });
   await employee.save();
 
@@ -46,12 +47,12 @@ const registerEmployee = async (req, res) => {
     sercure: process.env.NODE_ENV === 'production',
   };
 
-  const {_id, name, email} = employee;
+  const {_id, name, email, role} = employee;
   return res
     .status(201)
     .cookie('accessToken', accessToken, options)
     .cookie('refreshToken', refreshToken, options)
-    .json({employee: {_id, name, email}, accessToken, refreshToken});
+    .json({employee: {_id, name, email, role}, accessToken, refreshToken});
 };
 
 const loginEmployee = async (req, res) => {
