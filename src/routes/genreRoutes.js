@@ -8,10 +8,9 @@ import {
 } from '../controllers/genreController.js';
 import validateObjectId from '../middleware/validateObjectId.js';
 import authentication from '../middleware/authentication.js';
+import authorization from '../middleware/authorization.js';
 
 const router = express.Router();
-
-// TODO: Add authorization for DELETE
 
 router
   .route('/')
@@ -22,6 +21,6 @@ router
   .route('/:id')
   .get(validateObjectId, getGenreById)
   .put(authentication, validateObjectId, updateGenreById)
-  .delete(authentication, validateObjectId, deleteGenreById);
+  .delete(authentication, authorization(['Admin']), validateObjectId, deleteGenreById);
 
 export default router;

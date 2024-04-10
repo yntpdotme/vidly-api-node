@@ -8,10 +8,9 @@ import {
 } from '../controllers/movieController.js';
 import validateObjectId from '../middleware/validateObjectId.js';
 import authentication from '../middleware/authentication.js';
+import authorization from '../middleware/authorization.js';
 
 const router = epress.Router();
-
-// TODO: Add authorization for DELETE
 
 router
   .route('/')
@@ -22,6 +21,6 @@ router
   .route('/:id')
   .get(validateObjectId, getMovieById)
   .put(authentication, validateObjectId, updateMovieById)
-  .delete(authentication, validateObjectId, deleteMovieById);
+  .delete(authentication, authorization(['Admin']), validateObjectId, deleteMovieById);
 
 export default router;
