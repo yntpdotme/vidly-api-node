@@ -1,4 +1,4 @@
-import logger from '../config/logger.js';
+import logger from '../logger/logger.js';
 
 export function handleUncaughtExceptions() {
   // eslint-disable-next-line no-undef

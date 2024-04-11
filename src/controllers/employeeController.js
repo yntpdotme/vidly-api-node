@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import 'dotenv/config';
 
 import {Employee, ValidateLogin, ValidateRegister} from '../models/Employee.js';
 

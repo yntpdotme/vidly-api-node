@@ -1,7 +1,8 @@
 import express from 'express';
+import 'dotenv/config';
 
 import routes from './startup/routes.js';
-import db from './startup/db.js';
+import connetDB from './startup/db.js';
 import {handleUncaughtExceptions, handleUnhandledRejections} from './middleware/handleErrors.js';
 
 handleUncaughtExceptions();
@@ -10,6 +11,6 @@ handleUnhandledRejections();
 const app = express();
 
 routes(app);
-db();
+connetDB();
 
 export default app;

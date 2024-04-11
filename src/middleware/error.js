@@ -1,4 +1,4 @@
-import logger from '../config/logger.js';
+import logger from '../logger/logger.js';
 
 // eslint-disable-next-line no-unused-vars
 export default (err, req, res, next) => {

@@ -1,5 +1,4 @@
 import winston from 'winston';
-import 'dotenv/config';
 
 const {createLogger, transports, format} = winston;
 const {combine, timestamp, json, metadata} = format;
@@ -14,20 +13,19 @@ const productionLogger = () => {
       new transports.MongoDB({
         level: 'error',
         options: {useUnifiedTopology: true},
-        // eslint-disable-next-line no-undef
         db: process.env.DB_URL,
         collection: 'logs_prod',
       }),
     ],
     exceptionHandlers: [
       new transports.File({
-        filename: 'logs/logfiles/uncaughtException.log',
+        filename: 'logs/uncaughtException.log',
         format: json(),
       }),
     ],
     rejectionHandlers: [
       new transports.File({
-        filename: 'logs/logfiles/unhandledRejection.log',
+        filename: 'logs/unhandledRejection.log',
         format: json(),
       }),
     ],
