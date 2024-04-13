@@ -40,7 +40,8 @@ const validateCustomer = customer => {
         required_error: 'Name is required',
         invalid_type_error: 'Name must be a string',
       })
-      .min(2),
+      .min(2, {message: 'Must be 2 or more characters long'})
+      .max(50, {message: 'Must be 50 or fewer characters long'}),
     isGold: zod.boolean().optional(),
     phone: zod
       .string({

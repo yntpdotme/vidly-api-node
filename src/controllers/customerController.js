@@ -1,7 +1,5 @@
 import {Customer, validate} from '../models/Customer.js';
 
-// TODO: Add authorization for all
-
 const getAllCustomers = async (req, res) => {
   const customers = await Customer.find({}, {__v: 0}).sort({name: 1});
 
