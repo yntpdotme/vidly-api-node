@@ -13,7 +13,7 @@ const router = express.Router();
 router
   .route('/')
   .get(authentication, getAllRentals)
-  .post(createRental);
+  .post(authentication, createRental);
 
 router
   .route('/:id')
