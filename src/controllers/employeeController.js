@@ -102,7 +102,7 @@ const logoutEmployee = async (req, res) => {
     .status(200)
     .clearCookie('accessToken', options)
     .clearCookie('refreshToken', options)
-    .json('Employee loggd out');
+    .json('Employee logged out');
 };
 
 const refreshAccessToken = async (req, res) => {
