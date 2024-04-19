@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import zod from 'zod';
+import dayjs from 'dayjs';
 
 import {customerSchema} from './Customer.js';
 
@@ -45,6 +46,20 @@ const rentalSchema = new mongoose.Schema({
     min: 0,
   },
 });
+
+rentalSchema.statics.lookup = function (customerId, movieId) {
+  return this.findOne({
+    'customer._id': customerId,
+    'movie._id': movieId,
+  });
+};
+
+rentalSchema.methods.return = function () {
+  this.dateReturned = new Date();
+
+  const rentalDays = dayjs().diff(this.dateOut, 'days');
+  this.rentalFee = rentalDays * this.movie.dailyRentalRate;
+};
 
 // Creating Model
 const Rental = mongoose.model('Rental', rentalSchema);
