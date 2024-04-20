@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "npx nodemon src/server.js",
-    "test": "jest --verbose --runInBand --coverage",
+    "test": "jest --verbose --runInBand --coverage --detectOpenHandles",
     "lint": "eslint ./src --ext .js"
   },
   "author": "Akash Kadlag",
