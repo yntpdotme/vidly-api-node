@@ -143,4 +143,18 @@ const refreshAccessToken = async (req, res) => {
     );
 };
 
-export {registerEmployee, loginEmployee, logoutEmployee, refreshAccessToken};
+const getEmployee = async (req, res) => {
+  const employee = await Employee.findById(req.employee._id).select(
+    '-__v -password -refreshToken',
+  );
+
+  return res.json(employee);
+};
+
+export {
+  registerEmployee,
+  loginEmployee,
+  logoutEmployee,
+  refreshAccessToken,
+  getEmployee,
+};

@@ -9,6 +9,44 @@ describe('/api/employees', () => {
     await Employee.deleteMany({});
   });
 
+  describe('GET /me', () => {
+    let employee, accessToken;
+
+    beforeEach(async () => {
+      employee = new Employee({
+        name: 'Employee',
+        email: 'employee@vidly.com',
+        password: 'Vidly@1',
+      });
+      await employee.save();
+
+      accessToken = employee.generateAccessToken();
+    });
+
+    const exec = () => {
+      return request(app)
+        .get('/api/employees/me')
+        .set('authorization', `bearer ${accessToken}`);
+    };
+
+    test('should return 401 if client is not logged in', async () => {
+      accessToken = '';
+      const res = await exec();
+
+      expect(res.status).toBe(401);
+    });
+
+    test('should return a employee', async () => {
+      const res = await exec();
+
+      expect(res.status).toBe(200);
+      expect(res.body).toHaveProperty('_id');
+      expect(res.body).toHaveProperty('name', 'Employee');
+      expect(res.body).toHaveProperty('email', 'employee@vidly.com');
+      expect(res.body).toHaveProperty('role', 'Employee');
+    });
+  });
+
   describe('POST /signup', () => {
     test('should register a new employee', async () => {
       const res = await request(app).post('/api/employees/signup').send({

@@ -4,7 +4,8 @@ import {
   registerEmployee,
   loginEmployee,
   logoutEmployee,
-  refreshAccessToken
+  refreshAccessToken,
+  getEmployee,
 } from '../controllers/employeeController.js';
 import authentication from '../middleware/authentication.js';
 
@@ -25,5 +26,9 @@ router
 router
   .route('/refresh')
   .post(refreshAccessToken);
+
+router
+  .route('/me')
+  .get(authentication, getEmployee);
 
 export default router;
