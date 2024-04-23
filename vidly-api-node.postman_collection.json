@@ -1,0 +1,349 @@
+{
+	"info": {
+		"_postman_id": "90f5c0f0-da70-4675-bf3e-38057c4b7531",
+		"name": "Vidly API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31850881"
+	},
+	"item": [
+		{
+			"name": "Genres",
+			"item": [
+				{
+					"name": "Get All Genres",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/genres/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Genre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/genres/65c233bd1dbf1b6b6dad2e82"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Genres",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Romance\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/genres/"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Genres",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Thriller\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/genres/65af87db88c0fc561e8a54cd"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Genre",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/api/genres/660bfe7224d082bcf9626967"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Get All Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/customers/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/customers/65c2685d5da387201b5dcf44"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Harshal Darak\",\n    \"phone\": \"+919270677500\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/customers/"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Akash Kadlag\",\n    \"isGold\": true,\n    \"phone\": \"+919405000811\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/customers/65c2686e5da387201b5dcf46"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/api/customers/65c36197d5bcd3b876e4ccde"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movies",
+			"item": [
+				{
+					"name": "Get All Movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/movies/"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Movie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Sita Ramam\",\n    \"genreId\": \"660bfe7224d082bcf9626967\",\n    \"numberInStock\": 15,\n    \"dailyRentalRate\": 8\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/movies/"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Movie",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"title\": \"Interstellar\",\n    \"genreId\": \"65c233bd1dbf1b6b6dad2e82\",\n    \"numberInStock\": 15,\n    \"dailyRentalRate\": 8\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/movies/65c375788e7e8ba9c7ce8c9f"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Movie",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"title\": \"Interstellar\",\n    \"genreId\": \"65c233bd1dbf1b6b6dad2e82\",\n    \"numberInStock\": 15,\n    \"dailyRentalRate\": 8\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/movies/65c375788e7e8ba9c7ce8c9f"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rentals",
+			"item": [
+				{
+					"name": "Get All Rentals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/rentals/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Rental",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/rentals/660c02b53147c7dc4cc03f73"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Rental",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customerId\": \"65c2686e5da387201b5dcf46\",\n    \"movieId\": \"65c366a88e7e8ba9c7ce8c98\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/rentals/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Returns",
+			"item": [
+				{
+					"name": "Return Rental",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customerId\": \"65c2686e5da387201b5dcf46\",\n    \"movieId\": \"65c366a88e7e8ba9c7ce8c98\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/returns/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employees",
+			"item": [
+				{
+					"name": "Register Employee (SignUp)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Admin\",\n    \"email\": \"admin@vidly.com\",\n    \"password\": \"Vidly@1\",\n    \"role\": \"Admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/employees/signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate Employee (LogIn)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mahendra@vidly.com\",\n    \"password\": \"Vidly@1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/employees/signin"
+					},
+					"response": []
+				},
+				{
+					"name": "Unauthenticate Employee (LogOut)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/employees/signout"
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Tokens",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:3000/api/employees/refresh"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Employee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/employees/me"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
