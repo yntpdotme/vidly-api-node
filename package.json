@@ -8,7 +8,12 @@
     "start": "node src/server.js",
     "dev": "npx nodemon src/server.js",
     "test": "jest --verbose --runInBand --coverage --detectOpenHandles",
-    "lint": "eslint ./src --ext .js"
+    "test:unit": "npx jest ./tests/unit --verbose --runInBand",
+    "test:integration": "npx jest ./tests/integration --verbose --runInBand",
+    "lint": "eslint ./src --ext .js",
+    "format:check": "npx prettier --check \"**/*.{js,json}\"",
+    "format:fix": "npx prettier --write \"**/*.{js,json}\"",
+    "seed": "node seed.js"
   },
   "author": "Akash Kadlag",
   "license": "ISC",

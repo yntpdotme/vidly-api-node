@@ -1,0 +1,10 @@
+/.vscode
+/node_modules
+
+*.yml
+*.yaml
+
+*.env
+.env
+.env.*
+.github
