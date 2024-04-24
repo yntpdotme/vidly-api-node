@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    image: kadlagakash/vidly-api-node:latest
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./.env
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    command:  ["--replSet", "rs0", "--bind_ip_all", "--port", "27017"]
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: echo "try { rs.status() } catch (err) { rs.initiate({_id:'rs0',members:[{_id:0,host:'mongodb:27017'}]}) }" | mongosh --port 27017 --quiet
+      interval: 5s
+      timeout: 30s
+      start_period: 0s
+      start_interval: 1s
+      retries: 30
+    volumes:
+      - mongodb-data:/data/db
+      - mongodb-config:/data/configdb
+
+volumes:
+  mongodb-data:
+  mongodb-config:
