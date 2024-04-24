@@ -1,0 +1,10 @@
+/.vscode
+*.log
+logs
+node_modules
+tests
+.eslintrc.ejs
+.gitignore
+.prettierrc
+README.md
+vidly-api-node.postman_collection.json
