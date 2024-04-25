@@ -112,35 +112,39 @@ const refreshAccessToken = async (req, res) => {
   if (!incomingRefreshToken)
     return res.status(401).json('Unauthorized request');
 
-  const decodedToken = jwt.verify(
-    incomingRefreshToken,
-    process.env.REFRESH_TOKEN_SECRET,
-  );
-
-  const employee = await Employee.findById(decodedToken?._id);
-  if (!employee) return res.status(401).json('Invalid refresh token');
-
-  if (incomingRefreshToken !== employee?.refreshToken) {
-    // If token is valid but is used already
-    return res.status(401).json('Refresh token is expired or used');
-  }
-
-  const {accessToken, refreshToken: newRefreshToken} =
-    await generateAccessAndRefreshTokens(employee._id);
-
-  const options = {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-  };
-
-  return res
-    .status(200)
-    .cookie('accessToken', accessToken, options)
-    .cookie('refreshToken', newRefreshToken, options)
-    .json(
-      {accessToken, refreshToken: newRefreshToken},
-      'Access token refreshed',
+  try {
+    const decodedToken = jwt.verify(
+      incomingRefreshToken,
+      process.env.REFRESH_TOKEN_SECRET,
     );
+  
+    const employee = await Employee.findById(decodedToken?._id);
+    if (!employee) return res.status(401).json('Invalid refresh token');
+  
+    if (incomingRefreshToken !== employee?.refreshToken) {
+      // If token is valid but is used already
+      return res.status(401).json('Refresh token is expired or used');
+    }
+  
+    const {accessToken, refreshToken: newRefreshToken} =
+      await generateAccessAndRefreshTokens(employee._id);
+  
+    const options = {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+    };
+  
+    return res
+      .status(200)
+      .cookie('accessToken', accessToken, options)
+      .cookie('refreshToken', newRefreshToken, options)
+      .json(
+        {accessToken, refreshToken: newRefreshToken},
+        'Access token refreshed',
+      );
+  } catch (error) {
+    return res.status(401).json(error?.message || 'Invalid refresh token');
+  }
 };
 
 const getEmployee = async (req, res) => {
