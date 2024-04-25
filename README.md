@@ -66,7 +66,8 @@ Dive into the codebase to explore the inner workings of Vidly's backend.
 - **API Docs**: Comprehensive API Docs for easy integration.
 
 - **Best Practices**: Followed industry standards for clean, efficient code.
-  <br><br>
+  
+<br>
 
 ## <a name="tech-stack">⚙️&nbsp; Tech Stack</a>
 
@@ -79,7 +80,8 @@ Dive into the codebase to explore the inner workings of Vidly's backend.
 - [Jest](https://jestjs.io/) – JavaScript Testing Framework
 - [Git](https://git-scm.com/) – versioning
 - [Docker](https://www.docker.com/) - Containerization platform
-  <br><br>
+  
+<br>
 
 ## <a name="quick-start"> 🐳&nbsp;&nbsp; Quick Start</a>
 0. **Prerequisites**
@@ -104,7 +106,7 @@ Dive into the codebase to explore the inner workings of Vidly's backend.
    docker-compose up -d
    ```
 
-<br><br>
+<br>
 
 ## <a name="manual-setup"> 🖥️&nbsp;&nbsp; Manual Setup</a>
 
@@ -166,7 +168,7 @@ Dive into the codebase to explore the inner workings of Vidly's backend.
 
 	 Access the project APIs at the specified endpoints using [API Docs](https://documenter.getpostman.com/view/31850881/2sA3Bj8Zfc).
 
-   <br>
+<br>
 
 ## <a name="testing"> 🧪&nbsp;&nbsp; Testing</a>
 
