@@ -103,7 +103,9 @@ Dive into the codebase to explore the inner workings of Vidly's backend.
 3. **Start the server using Docker Compose:**
 
    ```bash
-   docker-compose up -d
+   docker-compose up 
+
+   # then press 'w' to Enable Watch (For Live Updation)
    ```
 
 <br>
@@ -177,7 +179,7 @@ To ensure reliability and stability for our end users, we have implemented unit 
 - First run MongoDB in a Docker container using following command
 
    ```bash
-   docker-compose -f docker-compose.test.yml up -d mongodb
+   docker-compose -f compose.test.yml up
    ```
 
 ### Unit Tests

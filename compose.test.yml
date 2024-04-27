@@ -1,20 +1,10 @@
 version: '3.8'
 
 services:
-  backend:
-    container_name: server
-    build: .
-    ports:
-      - "3000:3000"
-    env_file:
-      - ./.env
-    depends_on:
-      - mongodb
-
   mongodb:
     image: mongo:latest
     container_name: mongodb
-    command:  ["--quiet", "--logpath", "/dev/null",  "--replSet", "rs0", "--bind_ip_all", "--port", "27017"]
+    command:  ["--quiet", "--logpath", "/dev/null", "--replSet", "rs0", "--bind_ip_all", "--port", "27017"]
     ports:
       - "27017:27017"
     healthcheck:
