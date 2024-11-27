@@ -13,6 +13,13 @@ export default app => {
   app.use(express.json({limit: '16kb'}));
   app.use(cookieParser());
 
+  app.use('/api/genres', genresRoutes);
+  app.use('/api/customers', customersRoutes);
+  app.use('/api/movies', moviesRoutes);
+  app.use('/api/rentals', rentalRoutes);
+  app.use('/api/employees', employeeRoutes);
+  app.use('/api/returns', returnRoutes);
+
   app.use('/', (req, res) => {
     res.send(
       `Welcome to Vidly Server.
@@ -20,11 +27,5 @@ export default app => {
     );
   });
 
-  app.use('/api/genres', genresRoutes);
-  app.use('/api/customers', customersRoutes);
-  app.use('/api/movies', moviesRoutes);
-  app.use('/api/rentals', rentalRoutes);
-  app.use('/api/employees', employeeRoutes);
-  app.use('/api/returns', returnRoutes);
   app.use(error);
 };
